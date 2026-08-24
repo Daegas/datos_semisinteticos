@@ -1,0 +1,13 @@
+# Ignore macOS Finder metadata
+.DS_Store
+Icon[^.]*
+
+.venv/
+src/
+
+
+
+data/
+
+# no está del todo implementado
+pyproject.toml
