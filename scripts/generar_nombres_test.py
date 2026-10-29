@@ -1,4 +1,3 @@
-# generar_personas.py
 """
 Genera N personas sintéticas (nombre + 2 apellidos) con sexo, entidad y
 edad agrupada aleatorios, usando mx_nombres, y las guarda en CSV.
@@ -23,7 +22,7 @@ from mx_nombres import (
     seleccionar_segundo_apellido,
     _warmup,  # precarga el CSV/groupbys una sola vez
 )
-from map_regiones import ENT_CODE_A_NOMBRE
+from mx_nombres.map_regiones import ENT_CODE_A_NOMBRE
 
 
 # ---------------------------------------------------------------------------
