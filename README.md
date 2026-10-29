@@ -18,11 +18,26 @@ Clona o descarga el repositorio y entra en su directorio raíz.
 
 Instala la biblioteca en modo editable:
 
+
+(Recomendado)
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+
 ```bash
 python -m pip install -e .
 ```
 
 Esta modalidad permite utilizar la biblioteca mientras se desarrolla el código fuente local.
+
+Test:
+```bash
+python -c "from mx_nombres import seleccionar_nombre; print(seleccionar_nombre('De 15 a 19', 1, 'FEMENINO'));"
+```
+
+Demora un poco en leer el .parquet.
 
 ## Uso
 
