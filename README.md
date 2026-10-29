@@ -15,17 +15,17 @@ En este repositorio, la biblioteca se utilizó para generar datos que forman par
 ## Instalación
 
 Clona o descarga el repositorio y entra en su directorio raíz.
+```bash
+git clone git@github.com:Daegas/datos_semisinteticos.git
+```
 
-Instala la biblioteca en modo editable:
-
-
-(Recomendado)
+(Recomendado) Crea un entorno virtual
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-
+Instala la biblioteca en modo editable:
 ```bash
 python -m pip install -e .
 ```
@@ -147,10 +147,15 @@ Si se necesita cargar otro archivo compatible, la función `recargar` permite re
 ```python
 from mx_nombres import recargar
 
-recargar("/ruta/al/archivo/df_nombres.csv")
+recargar("/ruta/al/archivo/df_nombres.parquet")
 ```
 
-El archivo alternativo debe contener las columnas requeridas por la biblioteca.
+El archivo alternativo debe contener las columnas requeridas por la biblioteca. 
+("EDAD_AGRUPADA",
+"CVE_ENTIDAD",
+"SEXO",
+"region5",
+"region8",)
 
 ## Estructura del proyecto
 
