@@ -6,6 +6,7 @@ Icon[^.]*
 
 
 
-data/
+/data/
+!/src/data/
 output/
 __pycache__/

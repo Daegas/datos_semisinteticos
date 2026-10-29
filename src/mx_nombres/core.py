@@ -36,8 +36,8 @@ from .mapeos import (
 # ---------------------------------------------------------------------------
 # Configuración
 # ---------------------------------------------------------------------------
-CSV_RECURSO = files("mx_nombres").joinpath(
-    "data", "df_nombres.csv"
+PARQUET_RECURSO = files("mx_nombres").joinpath(
+    "data", "df_nombres_zstd.parquet"
 )
 
 # Se conservan valores con CONTEO > MIN_CONTEO (igual que antes)
@@ -110,7 +110,7 @@ def _cargar(
     ]
 
     if csv_path is None:
-        with as_file(CSV_RECURSO) as ruta_csv:
+        with as_file(PARQUET_RECURSO) as ruta_csv:
             df = pd.read_csv(
                 ruta_csv,
                 encoding="latin-1",
