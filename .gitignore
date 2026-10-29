@@ -10,6 +10,3 @@ src/
 data/
 output/
 __pycache__/
-
-# no está del todo implementado
-pyproject.toml
