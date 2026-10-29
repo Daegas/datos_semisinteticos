@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/mx_nombres/__init__.py
+src/mx_nombres/core.py
+src/mx_nombres/map_regiones.py
+src/mx_nombres/mapeos.py
+src/mx_nombres.egg-info/Icon
+src/mx_nombres.egg-info/PKG-INFO
+src/mx_nombres.egg-info/SOURCES.txt
+src/mx_nombres.egg-info/dependency_links.txt
+src/mx_nombres.egg-info/requires.txt
+src/mx_nombres.egg-info/top_level.txt
+src/mx_nombres/data/df_nombres.csv
