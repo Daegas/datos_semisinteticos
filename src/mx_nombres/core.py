@@ -36,9 +36,8 @@ from .mapeos import (
 # ---------------------------------------------------------------------------
 # Configuración
 # ---------------------------------------------------------------------------
-PARQUET_RECURSO = files("mx_nombres").joinpath(
-    "data", "df_nombres_zstd.parquet"
-)
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = ROOT_DIR / "data" / "cleaned" / "df_nombres.parquet"
 
 # Se conservan valores con CONTEO > MIN_CONTEO (igual que antes)
 MIN_CONTEO = 2
@@ -92,13 +91,16 @@ def _construir_bolsas(df: pd.DataFrame, columna: str) -> dict[str, dict]:
 
 
 def _cargar(
-    csv_path: str | Path | None = None,
-) -> dict[str, dict[str, dict]]:
-    """Carga el CSV y construye las bolsas (una sola vez)."""
+    data_path=None,
+    ) -> dict[str, dict[str, dict]]:
+    """Carga el Parquet y construye las bolsas (una sola vez)."""
+
     global _BOLSAS
 
     if _BOLSAS is not None:
         return _BOLSAS
+
+    ruta = Path(data_path) if data_path is not None else DATA_PATH
 
     usecols = [
         "EDAD_AGRUPADA",
@@ -109,23 +111,17 @@ def _cargar(
         *COLUMNAS,
     ]
 
-    if csv_path is None:
-        with as_file(PARQUET_RECURSO) as ruta_csv:
-            df = pd.read_csv(
-                ruta_csv,
-                encoding="latin-1",
-                low_memory=False,
-                usecols=usecols,
-            )
-    else:
-        ruta_csv = Path(csv_path)
+    if not ruta.is_file():
+        raise FileNotFoundError(
+            f"No se encontró el archivo Parquet: {ruta}"
+        )
 
-        if not ruta_csv.is_file():
-            raise FileNotFoundError(
-                f"No se encontró el CSV: {ruta_csv}"
-            )
+    df = pd.read_parquet(
+        ruta,
+        columns=usecols,
+    )
 
-        df = pd.read_parquet(csv_path)
+
 
     for c in COLUMNAS:
         df[c] = df[c].fillna("").astype(str).str.strip()

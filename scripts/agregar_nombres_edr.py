@@ -24,8 +24,8 @@ COL_SEXO = "sexo"            # Hombre/Mujer, 1/2, H/M... (ver mapeos.py)
 t0 = time.time()
 PROJECT_PATH = Path(__file__).parent.parent
 print(f"Proyecto: {PROJECT_PATH.name}, año: {year}, semilla: {SEED}")
-entrada = PROJECT_PATH / "output" / f"edr_{year}_limpio.parquet"
-salida = PROJECT_PATH / "output" / f"edr_{year}_limpio_con_nombres.parquet"
+entrada = PROJECT_PATH / "data" / "cleaned" / f"edr_{year}_limpio.parquet"
+salida = PROJECT_PATH / "data" / "cleaned" / f"edr_{year}_limpio_con_nombres.parquet"
 
 df = pd.read_parquet(entrada)
 print(f"Leído {entrada.name}: {len(df):,} filas")
