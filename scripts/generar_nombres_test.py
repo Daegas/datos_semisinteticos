@@ -20,7 +20,6 @@ from mx_nombres import (
     seleccionar_nombre,
     seleccionar_primer_apellido,
     seleccionar_segundo_apellido,
-    _warmup,  # precarga el CSV/groupbys una sola vez
 )
 from mx_nombres.map_regiones import ENT_CODE_A_NOMBRE
 

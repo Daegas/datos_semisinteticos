@@ -37,7 +37,7 @@ from .mapeos import (
 # Configuración
 # ---------------------------------------------------------------------------
 ROOT_DIR = Path(__file__).resolve().parents[2]
-DATA_PATH = ROOT_DIR / "data" / "cleaned" / "df_nombres.parquet"
+DATA_PATH = ROOT_DIR / "data" / "cleaned" / "nombres.parquet"
 
 # Se conservan valores con CONTEO > MIN_CONTEO (igual que antes)
 MIN_CONTEO = 2

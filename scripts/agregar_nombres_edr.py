@@ -24,8 +24,8 @@ COL_SEXO = "sexo"            # Hombre/Mujer, 1/2, H/M... (ver mapeos.py)
 t0 = time.time()
 PROJECT_PATH = Path(__file__).parent.parent
 print(f"Proyecto: {PROJECT_PATH.name}, año: {year}, semilla: {SEED}")
-entrada = PROJECT_PATH / "data" / "cleaned" / f"edr_{year}_limpio.parquet"
-salida = PROJECT_PATH / "data" / "cleaned" / f"edr_{year}_limpio_con_nombres.parquet"
+entrada = PROJECT_PATH / "data" / "cleaned" / f"datos.parquet"
+salida = PROJECT_PATH / "data" / "cleaned" / f"datos_con_nombre.parquet"
 
 df = pd.read_parquet(entrada)
 print(f"Leído {entrada.name}: {len(df):,} filas")
@@ -47,6 +47,6 @@ print(f"Guardado {salida.name} en {time.time() - t0:.1f}s")
 print(df[["nombre", "apellido_paterno", "apellido_materno"]].head(10).to_string())
 
 # Muestra de 100 filas en CSV (utf-8-sig para que Excel respete los acentos)
-muestra = salida.parent / f"edr_{year}_limpio_con_nombres_muestra.csv"
+muestra = salida.parent / f"datos_con_nombres_muestra.csv"
 df.sample(n=100, random_state=SEED).to_csv(muestra, index=False, encoding="utf-8-sig")
 print(f"Guardada muestra: {muestra.name}")
