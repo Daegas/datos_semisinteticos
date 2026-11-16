@@ -8,7 +8,9 @@ version = "0.1.0"
 dependencies = [
     "numpy",
     "pandas",
+    "matplotlib",
     "pyarrow",
+    "python-dotenv",
 ]
 
 [tool.setuptools.packages.find]

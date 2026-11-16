@@ -328,6 +328,7 @@ SPEC_A = {
     "fecha_nacim": "datetime",
     "par_agre_nom": "text",
     "cve_lengua_nom": "swap",  
+    **_NAMES,
 }
 
 SPEC_B = {

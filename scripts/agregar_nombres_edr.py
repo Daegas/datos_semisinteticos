@@ -22,10 +22,23 @@ COL_SEXO = "sexo"            # Hombre/Mujer, 1/2, H/M... (ver mapeos.py)
 # -----------------------------------------------------------------------------
 
 t0 = time.time()
-PROJECT_PATH = Path(__file__).parent.parent
-print(f"Proyecto: {PROJECT_PATH.name}, año: {year}, semilla: {SEED}")
-entrada = PROJECT_PATH / "data" / "cleaned" / f"datos.parquet"
-salida = PROJECT_PATH / "data" / "cleaned" / f"datos_con_nombre.parquet"
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+
+load_dotenv(ROOT_DIR / ".env")
+
+DATA_DIR = Path(os.getenv("DATA_DIR", "data"))
+
+if not DATA_DIR.is_absolute():
+    DATA_DIR = ROOT_DIR / DATA_DIR
+
+print(f"Proyecto: {ROOT_DIR.name}, año: {year}, semilla: {SEED}")
+
+entrada = DATA_DIR / "cleaned" / "datos.parquet"
+salida = DATA_DIR / "cleaned" / "datos_con_nombre.parquet"
 
 df = pd.read_parquet(entrada)
 print(f"Leído {entrada.name}: {len(df):,} filas")

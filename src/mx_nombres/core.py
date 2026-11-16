@@ -18,6 +18,8 @@ Uso masivo:
 from __future__ import annotations
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 from importlib.resources import as_file, files
 
 import numpy as np
@@ -37,7 +39,17 @@ from .mapeos import (
 # Configuración
 # ---------------------------------------------------------------------------
 ROOT_DIR = Path(__file__).resolve().parents[2]
-DATA_PATH = ROOT_DIR / "data" / "cleaned" / "nombres.parquet"
+
+load_dotenv(ROOT_DIR / ".env")
+
+DATA_DIR = Path(os.getenv("DATA_DIR", "data"))
+
+if not DATA_DIR.is_absolute():
+    DATA_DIR = ROOT_DIR / DATA_DIR
+
+NOMBRES_PATH = DATA_DIR / "cleaned" / "nombres.parquet"
+OTRO_ARCHIVO_PATH = DATA_DIR / "raw" / "otro_archivo.csv"
+
 
 # Se conservan valores con CONTEO > MIN_CONTEO (igual que antes)
 MIN_CONTEO = 2
@@ -100,7 +112,7 @@ def _cargar(
     if _BOLSAS is not None:
         return _BOLSAS
 
-    ruta = Path(data_path) if data_path is not None else DATA_PATH
+    ruta = Path(data_path) if data_path is not None else NOMBRES_PATH
 
     usecols = [
         "EDAD_AGRUPADA",

@@ -3,13 +3,16 @@
 Icon[^.]*
 
 .venv/
-
+.env
 
 
 /data/
 !/src/data/
 output/
-__pycache__/
 
-notebooks/dfa_T05.html
-notebooks/dfa_T1.html
+# Archivos generados por Python
+__pycache__/
+*.egg-info/
+*.py[cod]
+build/
+dist/
