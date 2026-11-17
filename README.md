@@ -32,22 +32,16 @@ source .venv/bin/activate
 Instala la biblioteca en modo editable:
 
 ```bash
-python -m pip install -e .
+python3 -m pip install -e .
 ```
 
 Esta modalidad permite utilizar la biblioteca mientras se desarrolla el código fuente local.
-
-Quick Test
-
-```bash
-python -c "from mx_nombres import seleccionar_nombre; print(seleccionar_nombre('De 15 a 19', 1, 'FEMENINO'));"
-```
 
 ## Datos necesarios
 
 La biblioteca requiere un archivo Parquet con los datos utilizados para construir las estructuras de selección. Este archivo no se distribuye en el repositorio de GitHub.
 
-Coloca el archivo `nombres.parquet` en la siguiente ubicación:
+Coloca el archivo `nombres.parquet` dentro de la siguiente estructura:
 
 ```text
 data/
@@ -55,7 +49,35 @@ data/
     └── nombres.parquet
 ```
 
-La biblioteca utiliza esta ruta por defecto. Si el archivo no se encuentra, la selección de nombres y apellidos no podrá realizarse.
+### Configuración de la ruta
+
+La ubicación del directorio que contiene los datos se configura mediante un archivo `.env`.
+
+Para configurarlo, copia el archivo `.env.example` y renombra la copia como `.env`:
+
+```bash
+cp .env-example .env
+```
+
+Abre el archivo `.env` y modifica la variable `DATA_DIR` para indicar la ubicación del directorio que contiene los datos.
+
+Se pueden utilizar rutas relativas a la raíz del proyecto:
+
+```bash
+DATA_DIR=data/
+```
+
+O rutas absolutas:
+
+```bash
+DATA_DIR=/Users/usuario/Documents/mis_datos/
+```
+
+En ambos casos, la biblioteca buscará los archivos necesarios dentro de las subcarpetas correspondientes del directorio indicado. Por ejemplo, `cleaned/nombres.parquet`.
+
+Si el archivo no se encuentra en la ubicación configurada, la selección de nombres y apellidos no podrá realizarse.
+
+### Comprobar la instalación
 
 Para comprobar que la instalación y la configuración de los datos son correctas, ejecuta:
 
